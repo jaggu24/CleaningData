@@ -1,6 +1,6 @@
 ---
-title: "Cleaning the data"
-author: "Jeyakumaran"
+title: "testing"
+author: "jk1"
 date: "19 July 2020"
 output: html_document
 ---
@@ -9,16 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Initializing
+## R Markdown
 
-```{r}
-setwd("./")
-```
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-## Cleaning the train data
-
-
-```{r, echo=TRUE}
+```{r cars}
 a=read.table("train/subject_train.txt")
 str(a)
 b=read.table("train/X_train.txt")
@@ -44,13 +39,14 @@ str(train)
 
 ## Including Plots
 
+You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
 ```
 
 ## Cleaning the test data
 
-```{r}
+```{r test}
 a=read.table("test/subject_test.txt")
 str(a)
 b=read.table("test/X_test.txt")
@@ -71,14 +67,14 @@ str(test)
 
 ## Combining the ttain and test
 
-```{r}
+```{r combine}
 final_data=bind_rows(train,test)
 str(final_data)
 ```
 
 ## Getting the tidy_average
 
-```{r}
+```{r Tidy}
 tidy_person = aggregate(final_data, by=list(final_data$person_id) ,FUN = "mean")
 str(tidy_person)
 tidy_activity = aggregate(final_data, by=list(final_data$activity) ,FUN = "mean")
@@ -87,9 +83,10 @@ str(tidy_activity)
 
 ## Writing back into a file
 
-```{r}
+```{r writing}
 write.table(final_data, file = "tidy.txt")
 tidy=bind_rows(tidy_activity,tidy_person)
 write.table(tidy, file="tidy_dataset.txt")
 ```
+
 
